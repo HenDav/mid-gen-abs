@@ -56,8 +56,10 @@ RTP_KEYS = {"rtp_qwen"}
 
 ABSTENTION_RATIOS = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
 
-OUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "figures", "rebuttal")
-os.makedirs(OUT_DIR, exist_ok=True)
+FIG_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "figures")
+CSV_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "figures", "rebuttal")
+os.makedirs(FIG_DIR, exist_ok=True)
+os.makedirs(CSV_DIR, exist_ok=True)
 
 # ── Data loading ───────────────────────────────────────────────────────────────
 
@@ -381,11 +383,13 @@ def agg_seed_dfs(seed_result_list, value_col="p_incorrect"):
 # ── Plotting helpers ───────────────────────────────────────────────────────────
 
 def save_fig(fig, name):
-    """Save figure as both PDF and PNG."""
-    for ext in ["pdf", "png"]:
-        path = os.path.join(OUT_DIR, f"{name}.{ext}")
-        fig.savefig(path, dpi=200, bbox_inches="tight")
-        print(f"  Saved: {path}")
+    """Save figure as both PDF and PNG. PNGs go to figures/ (for paper); PDFs to figures/rebuttal/."""
+    png_path = os.path.join(FIG_DIR, f"{name}.png")
+    fig.savefig(png_path, dpi=200, bbox_inches="tight")
+    print(f"  Saved: {png_path}")
+    pdf_path = os.path.join(CSV_DIR, f"{name}.pdf")
+    fig.savefig(pdf_path, dpi=200, bbox_inches="tight")
+    print(f"  Saved: {pdf_path}")
     plt.close(fig)
 
 
@@ -591,7 +595,7 @@ def main():
 
     if all_todo1_csv:
         pd.concat(all_todo1_csv, ignore_index=True).to_csv(
-            os.path.join(OUT_DIR, "p_incorrect_given_abstained.csv"), index=False)
+            os.path.join(CSV_DIR, "p_incorrect_given_abstained.csv"), index=False)
         print("  Saved: p_incorrect_given_abstained.csv")
 
     # ── RTP TODO 1 FIGURE (separate) ──────────────────────────────────────────
@@ -697,7 +701,7 @@ def main():
 
     if all_todo3_csv:
         pd.concat(all_todo3_csv, ignore_index=True).to_csv(
-            os.path.join(OUT_DIR, "abstention_time_stats.csv"), index=False)
+            os.path.join(CSV_DIR, "abstention_time_stats.csv"), index=False)
         print("  Saved: abstention_time_stats.csv")
 
     # ── TODO 4A FIGURE ────────────────────────────────────────────────────────
@@ -744,7 +748,7 @@ def main():
         axes4a[j].axis("off")
     save_fig(fig4a, "monotone_bias")
     pd.DataFrame(todo4a_csv_rows).to_csv(
-        os.path.join(OUT_DIR, "monotone_bias.csv"), index=False)
+        os.path.join(CSV_DIR, "monotone_bias.csv"), index=False)
     print("  Saved: monotone_bias.csv")
 
     # ── TODO 4B FIGURE ────────────────────────────────────────────────────────
@@ -791,7 +795,7 @@ def main():
         axes4b[j].axis("off")
     save_fig(fig4b, "additive_noise")
     pd.DataFrame(todo4b_csv_rows).to_csv(
-        os.path.join(OUT_DIR, "additive_noise.csv"), index=False)
+        os.path.join(CSV_DIR, "additive_noise.csv"), index=False)
     print("  Saved: additive_noise.csv")
 
     # ── TODO 4 Combined summary figure (illustrative dataset, 2 panels) ──────────
@@ -867,7 +871,7 @@ def main():
                                      "perturbation": f"sigma={sigma}x_std",
                                      "mean_abs_delta_accuracy": delta})
     summary_df = pd.DataFrame(summary_rows)
-    summary_csv = os.path.join(OUT_DIR, "perturbation_summary.csv")
+    summary_csv = os.path.join(CSV_DIR, "perturbation_summary.csv")
     summary_df.to_csv(summary_csv, index=False)
     print(f"  Saved: {summary_csv}")
 
@@ -920,7 +924,7 @@ def main():
 
     if todo5_csv_rows:
         pd.DataFrame(todo5_csv_rows).to_csv(
-            os.path.join(OUT_DIR, "cross_split_calibration.csv"), index=False)
+            os.path.join(CSV_DIR, "cross_split_calibration.csv"), index=False)
         print("  Saved: cross_split_calibration.csv")
 
     print("\n=== All done. Outputs in figures/rebuttal/ ===")

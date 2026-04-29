@@ -12,7 +12,7 @@ sns.set_style("whitegrid")
 
 ABSTENTION_RATIOS = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
 
-OUTPUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "output_plots")
+OUTPUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "figures")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 COLORS = {

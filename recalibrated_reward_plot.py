@@ -13,7 +13,7 @@ sns.set_style("whitegrid")
 
 ABSTENTION_RATIOS = np.linspace(0.02, 0.98, 50)
 
-OUTPUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "output_plots")
+OUTPUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "figures")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 DATASET_TITLE_MAP = {
