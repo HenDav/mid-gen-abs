@@ -1,0 +1,25 @@
+name: dynamic-abstention
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.10
+  - pytorch>=2.0
+  - pytorch-cuda=12.1
+  - numpy
+  - pandas
+  - scipy
+  - scikit-learn
+  - matplotlib
+  - seaborn
+  - tqdm
+  - pip
+  - pip:
+    - transformers>=4.40.0
+    - trl>=0.8.0
+    - peft>=0.10.0
+    - torchmetrics>=1.0.0
+    - wandb

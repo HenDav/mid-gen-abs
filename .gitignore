@@ -1,0 +1,52 @@
+# ── Data (hosted on HuggingFace) ──────────────────────────────────────────────
+traj_csvs/
+
+# ── Raw experiment output directories ─────────────────────────────────────────
+olympiadMath_phi3/
+olympiadMath_qwen2.5-7B/
+olympiadMath_qwen_fixed_step_100tokens/
+olympiadMath_qwen_fixed_step_100tokens (2)/
+mini_rtp_qwen2.5-7B/
+
+# ── Stray/duplicate files ──────────────────────────────────────────────────────
+olympiadMath_phi3_seed46 (2).csv
+environment.yml
+*.tar.gz
+
+# ── Legacy ────────────────────────────────────────────────────────────────────
+legacy/
+
+# ── Generated plots (re-run scripts to reproduce) ─────────────────────────────
+output_plots/
+poster/figs/
+figures/*.png
+figures/rebuttal/*.png
+figures/rebuttal/*.pdf
+# figures/rebuttal/*.csv is intentionally NOT ignored — needed by poster_plots.py
+
+# ── Internal / paper source ───────────────────────────────────────────────────
+main.tex
+Knowing When to Quit ICML rebuttal.md
+
+# ── Claude Code ───────────────────────────────────────────────────────────────
+.claude/
+
+# ── Python ────────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# ── Notebooks / checkpoints ───────────────────────────────────────────────────
+*.ipynb_checkpoints
+*.ckpt
+*.pt
+*.bin
+
+# ── OS / editors ──────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
