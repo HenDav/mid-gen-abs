@@ -1,6 +1,8 @@
 # Dynamic Mid-Generation Abstention for LLMs
 
-This repository contains the code for reproducing the experiments in "Knowing When to Quit: A Principled Framework for Dynamic Abstention in LLM Reasoning" (ICML 2026).
+This repository contains the code for reproducing the experiments in **"Knowing When to Quit: A Principled Framework for Dynamic Abstention in LLM Reasoning"** (ICML 2026).
+
+**Authors:** Hen Davidov, Nachshon Cohen, Oren Kalinsky, Yaron Fairstein, Guy Kushilevitz, Ram Yazdi, Patrick Rebeschini
 
 ## Overview
 
@@ -15,9 +17,10 @@ conda activate abstention
 
 ## Data
 
-Trajectory CSVs (~2.4 GB) are hosted on HuggingFace. Download them before running any figure or analysis script:
+Trajectory CSVs (~2.4 GB) are hosted on HuggingFace at [HenDav/mid-gen-abs-data](https://huggingface.co/datasets/HenDav/mid-gen-abs-data). Download them before running any figure or analysis script:
 
 ```bash
+pip install huggingface_hub   # if not already installed
 python download_data.py
 ```
 
@@ -105,24 +108,20 @@ Repeat for each dataset/model combination (GSM8K and OlympiadBench × Phi-3 and 
 
 ## Reproducing Figures
 
-After downloading data (`python download_data.py`), all figure scripts auto-discover CSVs from `traj_csvs/`.
+After downloading data (`python download_data.py`), all figure scripts auto-discover CSVs from `traj_csvs/` and save directly to `figures/`:
 
 ```bash
-# Paper figures → output_plots/
+# Main paper figures → figures/
 python main_results.py
 python recalibrated_reward_plot.py
-
-# Calibration comparison → figures/
 python calibration_comparison_figure.py
 
-# Rebuttal analyses → figures/rebuttal/
+# Rebuttal figures → figures/
 python rebuttal_experiments.py
 
 # Poster panels (PDF + JSON per figure) → poster/figs/
 python poster_plots.py
 ```
-
-`poster_plots.py` also exports a JSON description alongside each PDF for use in interactive widgets.
 
 ## Key Components
 
@@ -168,9 +167,9 @@ GPU memory: ~14 GB for 7B models (frozen backbone + value head). Gradient checkp
 ## Citation
 
 ```bibtex
-@inproceedings{anonymous2026dynamic,
+@inproceedings{davidov2026knowing,
   title={{Knowing When to Quit: A Principled Framework for Dynamic Abstention in LLM Reasoning}},
-  author={Anonymous},
+  author={Davidov, Hen and Cohen, Nachshon and Kalinsky, Oren and Fairstein, Yaron and Kushilevitz, Guy and Yazdi, Ram and Rebeschini, Patrick},
   booktitle={International Conference on Machine Learning},
   year={2026}
 }
