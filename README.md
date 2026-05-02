@@ -97,8 +97,8 @@ Run all models on a test set to produce the trajectory CSV files consumed by all
 python plot_abstention_rate_analysis.py \
     --model-name "Qwen/Qwen2.5-Math-7B-Instruct" \
     --data-path data/test.jsonl \
-    --baseline-path outputs/baseline/value_head_epoch_2.pth \
-    --full-model-path outputs/dynamic/value_head_epoch_5.pth \
+    --baseline-path outputs/baseline/trained_value_head_first_token.pth \
+    --full-model-path outputs/dynamic/trained_value_head.pth \
     --lora-model-path outputs/lora/final_model \
     --output-folder traj_csvs/main/gsm8k_qwen \
     --device cuda:0
